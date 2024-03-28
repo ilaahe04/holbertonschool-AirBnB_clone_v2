@@ -131,21 +131,10 @@ class HBNBCommand(cmd.Cmd):
                 except ValueError:
                     v = v.strip('"').replace("_", " ")
             kwargs_dict[k] = v
-                #try:
-                    #attribute = HBNBCommand.verify_attribute(v)
-                #except:
-                 #   continue
-                #if not attribute:
-                 #   continue
-                #setattr(new_instance, k, attribute)
         new_instance = HBNBCommand.classes[classes](**kwargs_dict)
         new_instance.save()
         print(new_instance.id)
         new_instance.save()
-        #except SyntaxError:
-            #print("** class name missing **")
-        #except NameError as e:
-            #print("** class doesn't exist **")
 
     def help_create(self):
         """ Help information for the create method """
