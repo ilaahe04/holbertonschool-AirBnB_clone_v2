@@ -118,17 +118,26 @@ class HBNBCommand(cmd.Cmd):
         try:
             if not args:
                 raise SyntaxError()
+            kwargs_dict = {}
             split1 = args.split(' ')
             new_instance = eval('{}()'.format(split1[0]))
             params = split1[1:]
             for param in params:
                 k, v = param.split('=')
                 try:
-                    attribute = HBNBCommand.verify_attribute(v)
-                except:
-                    continue
-                if not attribute:
-                    continue
+                    v = int(v)
+                except ValueError:
+                    try:
+                        v = float(v)
+                    except ValueError:
+                        v = v.strip('"').replace("_", " ")
+                kwargs_dict[k] = v
+                #try:
+                    #attribute = HBNBCommand.verify_attribute(v)
+                #except:
+                 #   continue
+                #if not attribute:
+                 #   continue
                 setattr(new_instance, k, attribute)
             new_instance.save()
             print(new_instance.id)
