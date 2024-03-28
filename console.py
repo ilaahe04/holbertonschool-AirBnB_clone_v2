@@ -71,13 +71,13 @@ class HBNBCommand(cmd.Cmd):
 
                 # if arguments exist beyond _id
                 pline = pline[2].strip()  # pline is now str
-                if pline:
+                #if pline:
                     # check for *args or **kwargs
-                    if pline[0] is '{' and pline[-1] is'}'\
-                            and type(eval(pline)) is dict:
-                        _args = pline
-                    else:
-                        _args = pline.replace(',', '')
+                    #if pline[0] is '{' and pline[-1] is'}'\
+                            #and type(eval(pline)) is dict:
+                        #_args = pline
+                    #else:
+                        #_args = pline.replace(',', '')
                         # _args = _args.replace('\"', '')
             line = ' '.join([_cmd, _cls, _id, _args])
 
@@ -283,19 +283,19 @@ class HBNBCommand(cmd.Cmd):
                 args.append(v)
         else:  # isolate args
             args = args[2]
-            if args and args[0] is '\"':  # check for quoted arg
-                second_quote = args.find('\"', 1)
-                att_name = args[1:second_quote]
-                args = args[second_quote + 1:]
+            #if args and args[0] is '\"':  # check for quoted arg
+                #second_quote = args.find('\"', 1)
+                #att_name = args[1:second_quote]
+                #args = args[second_quote + 1:]
 
             args = args.partition(' ')
 
             # if att_name was not quoted arg
-            if not att_name and args[0] is not ' ':
-                att_name = args[0]
+            #if not att_name and args[0] is not ' ':
+                #att_name = args[0]
             # check for quoted val arg
-            if args[2] and args[2][0] is '\"':
-                att_val = args[2][1:args[2].find('\"', 1)]
+            #if args[2] and args[2][0] is '\"':
+                #att_val = args[2][1:args[2].find('\"', 1)]
 
             # if att_val was not quoted arg
             if not att_val and args[2]:

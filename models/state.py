@@ -8,7 +8,7 @@ from os import getenv
 
 class State(BaseModel):
     """ State class """
-      __tablename__ = 'states'
+    __tablename__ = 'states'
     name = Column(String(128), nullable=False)
     cities = relationship('City', cascade='all, delete', backref='state')
     def __init__(self, *args, **kwargs):
