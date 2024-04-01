@@ -18,8 +18,7 @@ from os import getenv
 
 class DBStorage:
     """
-        This class manage DB storage for AirBnb
-        Clone using sqlAlchemy
+        This class manage DB
     """
     __engine = None
     __session = None
@@ -27,7 +26,7 @@ class DBStorage:
 
     def __init__(self):
         """
-            Init __engine based on the Enviroment
+            Init __engine
         """
         HBNB_MYSQL_USER = getenv('HBNB_MYSQL_USER')
         HBNB_MYSQL_PWD = getenv('HBNB_MYSQL_PWD')
@@ -45,8 +44,9 @@ class DBStorage:
             Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
-        """ query on the current database session (self.__session)
-        all objects depending of the class name"""
+        """
+        query on the current database session (self.__session)
+        """
         d = {}
         if cls is None:
             for c in self.all_classes:
@@ -62,7 +62,7 @@ class DBStorage:
 
     def new(self, obj):
         """
-            Creating new instance in db storage
+            new instance in db storage
         """
         self.__session.add(obj)
 
