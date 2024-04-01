@@ -3,8 +3,7 @@
 import models
 from models.base_model import BaseModel, Base
 from models.city import City
-import sqlalchemy
-from sqlalchemy import Column, String, ForeignKey
+from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
 
 
