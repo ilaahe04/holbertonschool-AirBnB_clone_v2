@@ -14,12 +14,12 @@ class test_Place(test_basemodel):
         self.value = Place
         self.place1 = Place(city_id="d80e0344-63eb-434a-b1e0-07783522124e",
                             user_id="d81e0344-63eb-434a-b1e0-07783522124e",
-                            name="Arzu",
-                            description="Amazing place puahh",
-                            number_rooms=6,
-                            number_bathrooms=7,
-                            max_guest=17,
-                            price_by_night=170,
+                            name="Los Pollos Hermanos",
+                            description="Amazing place :)",
+                            number_rooms=3,
+                            number_bathrooms=4,
+                            max_guest=15,
+                            price_by_night=20,
                             latitude=12.4,
                             longtitude=14.12,
                             amenity_ids=[])

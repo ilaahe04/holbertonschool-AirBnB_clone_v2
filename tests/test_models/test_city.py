@@ -12,8 +12,8 @@ class test_City(test_basemodel):
         super().__init__(*args, **kwargs)
         self.name = "City"
         self.value = City
-        self.city1 = City(state_id="95a5abab-aa65-4861-9bc6-1da4a36069aa",
-                          name="San_Francisco")
+        self.city1 = City(state_id="d80e0345-67eb-434a-b1e0-07783522124e",
+                          name="Albuquerque")
 
     def test_state_id(self):
         """ """

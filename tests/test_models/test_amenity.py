@@ -12,7 +12,7 @@ class test_Amenity(test_basemodel):
         super().__init__(*args, **kwargs)
         self.name = "Amenity"
         self.value = Amenity
-        self.amenity1 = Amenity(name="Cable")
+        self.amenity1 = Amenity(name="Wi-fi")
 
     def test_name2(self):
         """ """
