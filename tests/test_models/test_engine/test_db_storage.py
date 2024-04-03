@@ -1,11 +1,9 @@
 #!/usr/bin/python3
 """ Module for testing database storage"""
+from os import getenv
 import unittest
 from models.base_model import BaseModel
-from models import storage, storage_type
-from os import getenv
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy import (create_engine)
+from models import storage
 
 
 @unittest.skipIf(storage_type != "db", "Storage type: Database")

@@ -3,7 +3,7 @@
 import unittest
 from models.base_model import BaseModel
 from models import storage
-import os
+from os import getenv, remove, path
 
 
 @unittest.skipIf(storage_type == "db", "Storage type: Database")
@@ -21,7 +21,7 @@ class test_fileStorage(unittest.TestCase):
     def tearDown(self):
         """ Remove storage file at end of tests """
         try:
-            os.remove('file.json')
+            remove('file.json')
         except:
             pass
 
