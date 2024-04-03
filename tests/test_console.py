@@ -8,6 +8,7 @@ from os import getenv
 
 
 class TestConsole(unittest.TestCase):
+    """this will test the console"""
 
     def setUp(self):
         self.hbtn = HBNBCommand()
