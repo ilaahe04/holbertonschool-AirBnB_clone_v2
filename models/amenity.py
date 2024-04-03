@@ -11,7 +11,3 @@ class Amenity(BaseModel, Base):
     name = Column(String(128), nullable=False)
     place_amenities = relationship('Place', secondary='place_amenity',
                                    overlaps="amenities", viewonly=False)
-
-    def __init__(self, *args, **kwargs):
-        """initializes Amenity"""
-        super().__init__(*args, **kwargs)

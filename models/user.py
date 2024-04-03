@@ -16,8 +16,3 @@ class User(BaseModel, Base):
     places = relationship('Place', backref='user', cascade="delete")
     reviews = relationship("Review", backref="user", cascade="delete")
 
-    def __init__(self, *args, **kwargs):
-        """
-        inherit from base  and Basemodel init
-        """
-        super().__init__(*args, **kwargs)
