@@ -1,16 +1,15 @@
 #!/usr/bin/python3
 """Data base storage of HBNB"""
+from models.state import State
+from models.user import User
+from sqlalchemy import create_engine
+from sqlalchemy.orm import relationship, scoped_session, sessionmaker
 from os import getenv
 from models.base_model import BaseModel, Base
 from models.amenity import Amenity
 from models.city import City
 from models.place import Place
 from models.review import Review
-from models.state import State
-from models.user import User
-from sqlalchemy import create_engine
-from sqlalchemy.orm import relationship, scoped_session, sessionmaker
-
 
 class DBStorage:
     __engine = None
@@ -31,7 +30,7 @@ class DBStorage:
             Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
-        """Getting all values from db"""
+
         if cls is None:
             objs = self.__session.query(State).all()
             objs.extend(self.__session.query(City).all())
