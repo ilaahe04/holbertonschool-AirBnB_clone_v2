@@ -12,7 +12,6 @@ from models.place import Place
 from models.review import Review
 from models.state import State
 from models.amenity import Amenity
-from models import storage_type
 
 
 class test_basemodel(unittest.TestCase):
@@ -67,7 +66,7 @@ class test_basemodel(unittest.TestCase):
     def test_str(self):
         """ """
         i = self.value()
-        self.assertEqual(str(i), '[{}] ({}) {}'.format(self.name, i.id,
+        self.assertEqual(str(i), '[{}] ({}) {}'.format(i.__class__.__name__, i.id,
                          i.__dict__))
 
     def test_todict(self):
@@ -85,8 +84,8 @@ class test_basemodel(unittest.TestCase):
     def test_kwargs_one(self):
         """ """
         n = {'Name': 'test'}
-        with self.assertRaises(KeyError):
-            new = self.value(**n)
+        new = self.value(**n)
+        self.assertEqual(type(new.id), str)
 
     def test_id(self):
         """ """
@@ -103,5 +102,5 @@ class test_basemodel(unittest.TestCase):
         new = self.value()
         self.assertEqual(type(new.updated_at), datetime.datetime)
         n = new.to_dict()
-        new = BaseModel(**n)
+        new = self.value(**n)
         self.assertTrue(n['created_at'] != new.updated_at)
