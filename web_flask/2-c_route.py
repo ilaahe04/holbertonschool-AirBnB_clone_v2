@@ -16,10 +16,11 @@ def hello():
 def hbnb():
     return 'HBNB'
 
+
 @app.route('/c/<text>', strict_slashes=False)
 def c_text(text):
     display_text = text.replace('_', ' ')
-    return 'C ' + display_text 
+    return 'C ' + display_text
 
 
 if __name__ == '__main__':
