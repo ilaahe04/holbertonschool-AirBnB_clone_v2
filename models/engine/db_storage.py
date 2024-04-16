@@ -15,6 +15,7 @@ from models.review import Review
 class DBStorage:
     __engine = None
     __session = None
+    classes = ["Amenity", "City", "Place", "Review", "State", "User"]
 
     def __init__(self):
         user = getenv("HBNB_MYSQL_USER")
