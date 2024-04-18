@@ -7,12 +7,6 @@ from models import storage
 app = Flask(__name__)
 
 
-@app.teardown_appcontext
-def teardown_db(exception):
-    """Remove the current SQLAlchemy Session"""
-    storage.close()
-
-
 @app.route('/states', strict_slashes=False)
 def states_list():
     """Display a HTML page with list of all State objects"""
@@ -24,12 +18,18 @@ def states_list():
 @app.route('/states/<id>', strict_slashes=False)
 def state_cities(id):
     """Display a HTML page with list of City objects for a given State"""
-    state = storage.get(State, id)
-    if state:
-        cities = sorted(state.cities, key=lambda city: city.name)
-        return render_template('9-states.html', state=state, cities=cities)
-    else:
-        return render_template('9-states.html', state=None, cities=None)
+    state = storage.all("State").values()
+    for s in state:
+        if s.id == id:
+            return render_template("9-states.html", state=s)
+
+    return render_template("9-states.html", state=None)
+
+
+@app.teardown_appcontext
+def teardown_db(exception):
+    """Remove the current SQLAlchemy Session"""
+    storage.close()
 
 
 if __name__ == '__main__':
