@@ -12,6 +12,7 @@ app = Flask(__name__)
 
 @app.route('/states_list', strict_silashes=False)
 def states_list():
+    """States list"""
     states = list(storage.all("State").values())
     states.sort(key=lambda state: state.name)
     return render_template("7-states_list.html", states=states)
@@ -19,6 +20,7 @@ def states_list():
 
 @app.teardown_appcontext
 def close_session(exception):
+    """Close session"""
     storage.close()
 
 
