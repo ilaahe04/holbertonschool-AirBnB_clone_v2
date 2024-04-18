@@ -2,7 +2,7 @@
 """Script that starts a Flask web application"""
 
 
-from flask import Flask, render_template_string
+from flask import Flask, render_template
 from models import storage
 from models.state import State
 
@@ -10,7 +10,7 @@ from models.state import State
 app = Flask(__name__)
 
 
-@app.route('/states_list', strict_slashes=False)
+@app.route('/states_list', strict_silashes=False)
 def states_list():
     states = list(storage.all("State").values())
     states.sort(key=lambda state: state.name)
@@ -18,7 +18,7 @@ def states_list():
 
 
 @app.teardown_appcontext
-def close_session(exception=None):
+def close_session(exception):
     storage.close()
 
 
