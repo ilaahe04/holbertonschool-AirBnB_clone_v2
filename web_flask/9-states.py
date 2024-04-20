@@ -11,18 +11,24 @@ app = Flask(__name__)
 
 @app.route('/states', strict_slashes=False)
 @app.route('/states/<id>', strict_slashes=False)
-def state_cities(id=None):
+def state_cities(id):
     """Display a HTML page with list of City objects for a given State"""
-    depo = storage.all(State)
-    if not id:
-        return render_template("7-states_list.html", depo=depo.values())
-    key = f'State.{id}'
-    state = None
-    try:
-        state = depo[key]
-    except KeyError:
-        pass
-    return render_template("9-states.html", state=state)
+    states_tmp = storage.all(State)
+    state_by_id = None
+    states = []
+
+    if id:
+        state = states_tmp[f"State.{id}"]
+        state_by_id = state
+    else:
+        for obj in states_tmp.values():
+            states.append(obj)
+
+    return render_template(
+                            "8-cities_by_states.html",
+                            states=states,
+                            single_state=state_by_id
+                          )
 
 
 @app.teardown_appcontext
