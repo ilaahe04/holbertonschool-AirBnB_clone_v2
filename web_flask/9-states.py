@@ -37,7 +37,10 @@ def states_cities(id):
     if state is None:
         return render_template('9-states.html', state=None)
     else:
-        cities = sorted(state.cities, key=lambda x: x.name)
+        if storage._DBStorage__engine == 'db':
+            cities = sorted(state.cities, key=lambda x: x.name)
+        else:
+            cities = sorted(state.cities(), key=lambda x: x.name)
         return render_template('9-states.html', state=state, cities=cities)
 
 
