@@ -3,27 +3,26 @@
 
 from flask import Flask, render_template
 from models import storage
+from models.state import State
+
 
 app = Flask(__name__)
 
 
 @app.route('/states', strict_slashes=False)
-def states_list():
-    """Display a HTML page with list of all State objects"""
-    states = storage.all(State).values()
-    sorted_states = sorted(states, key=lambda state: state.name)
-    return render_template('7-states_list.html', states=sorted_states)
-
-
 @app.route('/states/<id>', strict_slashes=False)
-def state_cities(id):
+def state_cities(id=None):
     """Display a HTML page with list of City objects for a given State"""
-    state = storage.all("State").values()
-    for s in state:
-        if s.id == id:
-            return render_template("9-states.html", state=s)
-
-    return render_template("9-states.html", state=None)
+    depo = storage.all(State)
+    if not id:
+        return render_template("7-states_list.html", depo=depo.values())
+    key = f'State.{id}'
+    state = None
+    try:
+        state = depo[key]
+    except KeyError:
+        pass
+    return render_template("9-states.html", state=state)
 
 
 @app.teardown_appcontext
